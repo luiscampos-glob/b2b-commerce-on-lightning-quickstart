@@ -258,7 +258,7 @@ sfdx force:community:publish -n "$communityNetworkName"
 sleep 10s
 
 echo "Creating search index."
-sfdx 1commerce:search:start -n "$communityNetworkName"
+sfdx commerce:search:start -n "$communityNetworkName"
 
 echo "QUICK START COMPLETE!"
 

@@ -1,0 +1,48 @@
+diff --git a/sfdx/README.md b/sfdx/README.md
+index f2b9aa2..1fda26d 100755
+--- a/sfdx/README.md
++++ b/sfdx/README.md
+@@ -59,7 +59,7 @@ Note: if that fails, you might need to first set that new scratch org as your de
+ sfdx force:config:set defaultusername=<YourScratchOrgUsernameInEmailFormat>
+ ```
+ 
+-Notice that the existing settings in the ```project-scratch-def.json``` file will enable all the necessary licenses and org perms and prefs required for Lightning B2B. If the scratch org creation is successful you should not need to modify any org perms or prefs. This is only available for the scratch orgs though, and will not work for developer edition orgs, sandboxes or other environments. For those orgs, follow the [B2B Commerce on Lightning Experience Setup Guide](https://resources.docs.salesforce.com/latest/latest/en-us/sfdc/pdf/b2b_standalone_setup.pdf).
++Notice that the existing settings in the ```project-scratch-def.json``` file will enable all the necessary licenses and org perms and prefs required for Lightning B2B. If the scratch org creation is successful you should not need to modify any org perms or prefs. This is only available for the scratch orgs though, and will not work for developer edition orgs, sandboxes or other environments. For those orgs, follow the [B2B Commerce (LWR) on Lightning Experience Setup Guide](https://resources.docs.salesforce.com/latest/latest/en-us/sfdc/pdf/b2b_standalone_setup.pdf).
+ 
+ 4. Make sure that your current directory is sfdx. Create and set up a new store in your new scratch org by running the following script:
+ ```
+diff --git a/sfdx/quickstart-create-and-setup-store.sh b/sfdx/quickstart-create-and-setup-store.sh
+index fdf1bf2..6b22a26 100755
+--- a/sfdx/quickstart-create-and-setup-store.sh
++++ b/sfdx/quickstart-create-and-setup-store.sh
+@@ -6,7 +6,7 @@ export SFDX_NPM_REGISTRY="http://platform-cli-registry.eng.sfdc.net:4880/"
+ export SFDX_S3_HOST="http://platform-cli-s3.eng.sfdc.net:9000/sfdx/media/salesforce-cli"
+ 
+ #templateName="b2c-lite-storefront"
+-templateName="B2B Commerce"
++templateName="B2B Commerce (LWR)"
+ 
+ function echo_attention() {
+   local green='\033[0;32m'
+@@ -28,7 +28,7 @@ then
+ else
+     storename=$1
+ fi
+-sfdx force:community:create --name "$storename" --templatename "B2B Commerce" --urlpathprefix "$storename" --description "Store $storename created by Quick Start script."
++sfdx force:community:create --name "$storename" --templatename "B2B Commerce (LWR)" --urlpathprefix "$storename" --description "Store $storename created by Quick Start script."
+ echo ""
+ 
+ storeId=""
+diff --git a/sfdx/quickstart-setup-store.sh b/sfdx/quickstart-setup-store.sh
+index 015b007..9870684 100755
+--- a/sfdx/quickstart-setup-store.sh
++++ b/sfdx/quickstart-setup-store.sh
+@@ -258,7 +258,7 @@ sfdx force:community:publish -n "$communityNetworkName"
+ sleep 10s
+ 
+ echo "Creating search index."
+-sfdx 1commerce:search:start -n "$communityNetworkName"
++sfdx commerce:search:start -n "$communityNetworkName"
+ 
+ echo "QUICK START COMPLETE!"
+

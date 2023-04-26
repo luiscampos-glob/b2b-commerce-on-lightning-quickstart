@@ -221,14 +221,15 @@ global class StripeAdapter implements commercepayments.PaymentGatewayAdapter {
         commercepayments.PaymentsHttp http = new commercepayments.PaymentsHttp();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('/v1/' + path);
-
-        Blob headerValue = Blob.valueOf('{!$Credential.Username}');
-        String authorizationHeader = 'Basic ' + EncodingUtil.base64Encode(headerValue);
-        request.setHeader('Authorization', authorizationHeader);
         
         request.setMethod('POST');
         request.setHeader('Content-Type', 'application/x-www-form-urlencoded');
         request.setBody(urlEncodedParams(params));
+
+        String API_KEY = 'API_KEY_HERE';
+		Blob headerValue = Blob.valueOf(API_KEY + ':');
+		String authorizationHeader = 'BASIC ' + EncodingUtil.base64Encode(headerValue);
+		request.setHeader('Authorization', authorizationHeader);
         
         return http.send(request);
     }
